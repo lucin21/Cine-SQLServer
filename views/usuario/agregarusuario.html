@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+            {% include 'estilos.html' %}
+
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div class="container formusuario">
+         {% csrf_token %}
+
+<div class="mb-3 mt-3">
+            <label
+                   class="form-label">Id Usuario</label>
+            <input type="text" class="form-control"
+                   readonly
+
+                   id="txtidusuario"
+                   placeholder="Id Usuario">
+        </div>
+
+    <div class="mb-3 mt-3">
+            <label
+                   class="form-label">Nombre Usuario</label>
+            <input type="text" class="form-control"
+
+                    data-campo="nombre usuario"
+                   id="txtnombreusuario"
+                   placeholder="Nombre Usuario">
+        <div id="divtxtnombreusuario"></div>
+        </div>
+     <div class="mb-3 mt-3">
+            <label
+                   class="form-label">Contraseña Usuario</label>
+            <input type="password" class="form-control"
+
+                     data-campo="contraseña usuario"
+                   id="txtcontrausuario"
+                   placeholder="Contraseña Usuario">
+           <div id="divtxtcontrausuario"></div>
+        </div>
+    <div class="mb-3 mt-3">
+    <p>Tipo usuario</p>
+    <div class="input-group " >
+        <input
+        type="hidden" id="txtidtipousuario"
+        />
+        <input type="text" class="form-control"
+               placeholder="Tipo Usuario"
+               id="txtnombretipousuario"
+                readonly
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                  data-toggle="modal" data-target="#exampleModal"
+                onclick="AbrirModal('TipoUsuario')"
+                type="button">Buscar
+        </button>
+    </div>
+          <div id="divtxtnombretipousuario"></div>
+        </div>
+    <div class="mb-3 mt-3">
+     <p>Persona</p>
+    <div class="input-group" >
+          <input
+        type="hidden" id="txtidpersona"
+        />
+        <input type="text" class="form-control"
+               placeholder="Persona"
+               id="txtnombrepersona"
+                readonly
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                  data-toggle="modal" data-target="#exampleModal"
+                 onclick="AbrirModal('Persona')"
+                type="button" >Buscar
+        </button>
+    </div>
+        <div id="divtxtnombrepersona"></div>
+        </div>
+
+      <div class="mb-3 mt-3">
+
+            <input type="button" class="btn btn-success"
+                value="Guardar"
+                   onclick="GuardarDatos()"
+                  />
+             <a class="btn btn-danger" href="/usuario/listar/">
+        Regresar</a>
+        </div>
+
+
+</div>
+
+<div class="modal fade" id="exampleModal"
+     tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="lblTitulo">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <div id="divTabla">
+
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                id="btnCerrarPopup"
+                data-dismiss="modal">Cancelar</button>
+        <button
+                onclick="GuardarDatos()"
+                type="button" class="btn btn-primary">
+            Guardar</button>
+      </div>
+        <div id="divErrores">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/agregarusuario.js' %}"></script>
+
+</body>
+</html>

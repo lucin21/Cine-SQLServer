@@ -1,0 +1,160 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+            {% include 'estilos.html' %}
+
+</head>
+<body>
+{% include 'menu.html' %}
+<div class="container">
+            <h1>Agregar Persona</h1>
+
+ <form class="mb-3" method="POST" action="/persona/guardarpersona/" >
+                {% csrf_token %}
+        <div class="mb-3">
+            <label
+                   class="form-label">Id Persona</label>
+            <input type="text" class="form-control"
+                   readonly
+                   name="idpersona"
+                   value="{{objetoData.idpersona}}"
+                   id="txtidpersona"
+                   placeholder="Id Persona">
+        </div>
+      <div class="mb-3">
+            <label
+                   class="form-label">DNI</label>
+            <input type="text" class="form-control"
+                    name="dni"
+                   id="txtdni"
+                   value="{{objetoData.dni}}"
+                   placeholder="DNI Persona" />
+          {% if 'dni' in objetoError %}
+          <p class="text-danger">{{objetoError.dni}}</p>
+          {% endif %}
+        </div>
+            <div class="mb-3">
+            <label
+                   class="form-label">Nombre Persona</label>
+            <input type="text" class="form-control"
+                    name="nombre"
+                   id="txtnombre"
+                   value="{{objetoData.nombre}}"
+                   placeholder="Nombre Persona" />
+                {% if 'nombre' in objetoError %}
+                <p class="text-danger">{{objetoError.nombre}}</p>
+                {% endif %}
+        </div>
+
+      <div class="mb-3">
+            <label
+                   class="form-label">Apellido paterno</label>
+            <input type="text" class="form-control"
+                    name="appaterno"
+                   id="txtappaterno"
+                   value="{{objetoData.appaterno}}"
+                   placeholder="Apellido paterno " />
+          {% if 'appaterno' in objetoError %}
+          <p class="text-danger">{{objetoError.appaterno}}</p>
+          {% endif %}
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Apellido materno</label>
+            <input type="text" class="form-control"
+                    name="apmaterno"
+                   id="txtapmaterno"
+                   value="{{objetoData.apmaterno}}"
+                   placeholder="Apellido materno " />
+           {% if 'apmaterno' in objetoError %}
+          <p class="text-danger">{{objetoError.apmaterno}}</p>
+          {% endif %}
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Fecha Nacimiento</label>
+            <input type="date" class="form-control"
+                    name="fechanac"
+                   id="txtfechanac"
+                   value="{{objetoData.fechanac}}"
+                   placeholder="Fecha nacimiento " />
+        </div>
+      <div class="mb-3">
+             <label
+                    class="form-label">Direccion</label>
+            <textarea class="form-control"
+                      id="txtdireccion"
+                      name="direccion"
+                      placeholder="Ingrese direccion"
+                      rows="3">{{objetoData.direccion}}</textarea>
+         </div>
+
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Telefono Fijo</label>
+            <input type="text" class="form-control"
+                    name="telefonofijo"
+                   id="txttelefonofijo"
+                   value="{{objetoData.telefonofijo}}"
+                   placeholder="Telefono fijo " />
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Telefono Celular</label>
+            <input type="text" class="form-control"
+                    name="telefonocelular"
+                   id="txttelefonocelular"
+                   value="{{objetoData.telefonocelular}}"
+                   placeholder="Telefono Celular " />
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Seleccione sexo</label>
+
+            <select name="idsexo" class="form-control">
+                <option value="0">
+                    --Seleccione--
+                </option>
+                  {% for sexo in listasexo %}
+                    {% if sexo.idsexo == objetoData.idsexo %}
+                         <option value="{{sexo.idsexo}}" selected>
+                      {{sexo.nombre}}
+                         </option>
+                    {% else %}
+                     <option value="{{sexo.idsexo}}">
+                      {{sexo.nombre}}
+                         </option>
+                    {% endif %}
+
+                {% endfor %}
+            </select>
+          {% if 'idsexo' in objetoError %}
+          <p class="text-danger">{{objetoError.idsexo}}</p>
+          {% endif %}
+
+        </div>
+
+        <div class="mb-3">
+
+            <input type="submit" class="btn btn-success"
+                value="Guardar"
+                  />
+             <a class="btn btn-danger" href="/persona/listar/">
+        Regresar</a>
+        </div>
+    </form>
+</div>
+   {% include 'scripts.html' %}
+
+</body>
+</html>

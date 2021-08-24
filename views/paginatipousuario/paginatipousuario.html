@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        {% include 'estilos.html' %}
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div  class="input-group mb-3 container mt-3"
+        >
+        <input
+        type="hidden" id="txtidtipousuario"
+        />
+        <input type="text" class="form-control"
+               placeholder="Ingrese tipo usuario"
+                id="txtnombre"
+               readonly
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                onclick ="abrirModalBusqueda()"
+                 data-toggle="modal" data-target="#exampleModal"
+                type="button" id="btnSeleccionar">Seleccione
+        </button>
+       <button class="btn btn-outline-primary"
+                onclick ="limpiarpaginatipousuario()"
+                type="button" id="btnLimpiar">Limpiar
+        </button>
+    </div>
+
+<div class="container">
+
+    <div id="divTabla">
+
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="exampleModal"
+     tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="lblTitulo">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <div id="divTablaSubPopup">
+
+            </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                id="btnCerrarPopup"
+                data-dismiss="modal">Cancelar</button>
+        <button
+                onclick="GuardarDatos()"
+                type="button" class="btn btn-primary">
+            Guardar</button>
+      </div>
+        <div id="divErrores">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/paginatipousuario.js' %}"
+></script>
+
+</body>
+</html>

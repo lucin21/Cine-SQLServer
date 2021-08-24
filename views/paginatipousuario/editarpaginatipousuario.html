@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        {% include 'estilos.html' %}
+</head>
+<body>
+{% include 'menu.html' %}
+
+<input  type="hidden" id="txtidpaginatipousuario"
+        value="{{iidpaginatipousuario}}" />
+<div class="container">
+
+ <div class="container">
+         {% csrf_token %}
+
+
+
+
+
+
+        <div id="divTabla">
+
+      </div>
+
+      <div class="mb-3 mt-3">
+
+            <input type="button" class="btn btn-success"
+                value="Guardar"
+                   onclick="GuardarDatos()"
+                  />
+           <input type="button" class="btn btn-success"
+                value="CheckBox"
+                   onclick=" obtenerCheckSeleccionados()"
+                  />
+             <a class="btn btn-danger" href="/paginatipousuario/paginatipousuariohtml/">
+        Regresar</a>
+        </div>
+
+
+</div>
+
+
+
+</div>
+
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/editarpaginatipousuario.js' %}"
+></script>
+
+</body>
+</html>

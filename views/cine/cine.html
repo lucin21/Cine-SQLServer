@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include "estilos.html" %}
+</head>
+<body>
+{% include 'menu.html' %}
+<div class="container mt-3 formulariocine">
+    <button class="btn btn-secondary" onclick="NuevoCine()">
+        Nuevo</button>
+    <fieldset>
+        <legend>Datos Cine</legend>
+    <div class="mb-3 formcine"  >
+                {% csrf_token %}
+        <div class="mb-3">
+            <label
+                   class="form-label">Id Cine</label>
+            <input type="text" class="form-control"
+                   readonly
+                   id="txtidcine"
+                   placeholder="Id Cine">
+        </div>
+            <div class="mb-3">
+            <label
+                   class="form-label">Nombre Cine</label>
+            <input type="text" class="form-control"
+
+                   id="txtnombrecine"
+                      data-campo="nombre cine"
+                   placeholder="Nombre Cine" >
+        </div>
+         <div class="mb-3">
+            <label
+                   class="form-label">Fecha Apertura</label>
+            <input
+                    data-campo="fecha apertura"
+                    placeholder="Fecha Apertura"
+            type="text" id="txtfechaapertura" class="form-control"
+            />
+        </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Seleccione tipo cine</label>
+            <select id="cboTipocine"
+                     data-campo="tipo cine"
+                    placeholder="Seleccione Cine"
+                    class="form-control">
+
+            </select>
+        </div>
+
+        <div class="mb-3">
+             <label
+                    class="form-label">Direccion Cine</label>
+            <textarea class="form-control"
+                      id="txtdireccion"
+                      placeholder="Ingrese direccion"
+                      rows="3"></textarea>
+         </div>
+
+        <div class="mb-3">
+
+            <input type="button" class="btn btn-success"
+                value="Guardar" onclick="GuardarCine()"
+                  />
+        </div>
+    </div>
+        </fieldset>
+    <div id="divErrores">
+
+    </div>
+</div>
+
+
+<div  class="input-group mb-3 container mt-3"
+        >
+
+        <input type="text" class="form-control"
+               placeholder="Ingrese nombre cine"
+                id="txtnombre"
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                onclick ="buscarCine()"
+                type="button" id="button-addon2">Buscar
+        </button>
+    </div>
+<div id="divTabla" class="container mt-3">
+
+</div>
+
+{% include "scripts.html" %}
+<script type="text/javascript" src="{% static 'js/cine.js '%}" ></script>
+</body>
+</html>

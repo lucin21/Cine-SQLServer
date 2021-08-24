@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+            {% include 'estilos.html' %}
+
+</head>
+<body>
+{% include 'menu.html' %}
+<div class="container">
+            <h1>Agregar Persona</h1>
+
+ <form class="mb-3" method="POST" action="/persona/guardarpersona/" >
+                {% csrf_token %}
+        <div class="mb-3">
+            <label
+                   class="form-label">Id Persona</label>
+            <input type="text" class="form-control"
+                   readonly
+                   name="idpersona"
+                   value="{{obj.idpersona}}"
+                   id="txtidpersona"
+                   placeholder="Id Persona">
+        </div>
+      <div class="mb-3">
+            <label
+                   class="form-label">DNI</label>
+            <input type="text" class="form-control"
+                    name="dni"
+                   id="txtdni"
+                   value="{{obj.dni}}"
+                   placeholder="DNI Persona" />
+        </div>
+            <div class="mb-3">
+            <label
+                   class="form-label">Nombre Persona</label>
+            <input type="text" class="form-control"
+                    name="nombre"
+                   id="txtnombre"
+                   value="{{obj.nombre}}"
+                   placeholder="Nombre Persona" />
+        </div>
+
+      <div class="mb-3">
+            <label
+                   class="form-label">Apellido paterno</label>
+            <input type="text" class="form-control"
+                    name="appaterno"
+                   id="txtappaterno"
+                   value="{{obj.appaterno}}"
+                   placeholder="Apellido paterno " />
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Apellido materno</label>
+            <input type="text" class="form-control"
+                    name="apmaterno"
+                   id="txtapmaterno"
+                   value="{{obj.appaterno}}"
+                   placeholder="Apellido materno " />
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Fecha Nacimiento</label>
+            <input type="date" class="form-control"
+                    name="fechanac"
+                   id="txtfechanac"
+                   value="{{obj.fechanac}}"
+                   placeholder="Fecha nacimiento " />
+        </div>
+      <div class="mb-3">
+             <label
+                    class="form-label">Direccion</label>
+            <textarea class="form-control"
+                      id="txtdireccion"
+                      name="direccion"
+                      placeholder="Ingrese direccion"
+                      rows="3">{{obj.direccion}}</textarea>
+         </div>
+
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Telefono Fijo</label>
+            <input type="text" class="form-control"
+                    name="telefonofijo"
+                   id="txttelefonofijo"
+                   value="{{obj.telefonofijo}}"
+                   placeholder="Telefono fijo " />
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Telefono Celular</label>
+            <input type="text" class="form-control"
+                    name="telefonocelular"
+                   id="txttelefonocelular"
+                   value="{{obj.telefonocelular}}"
+                   placeholder="Telefono Celular " />
+        </div>
+
+     <div class="mb-3">
+            <label
+                   class="form-label">Seleccione sexo</label>
+
+            <select name="idsexo" class="form-control">
+                <option value="0">
+                    --Seleccione--
+                </option>
+                {% for sexo in listasexo %}
+                    {% if sexo.idsexo == idsexo %}
+                         <option value="{{sexo.idsexo}}" selected>
+                      {{sexo.nombre}}
+                         </option>
+                    {% else %}
+                     <option value="{{sexo.idsexo}}">
+                      {{sexo.nombre}}
+                         </option>
+                    {% endif %}
+
+                {% endfor %}
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <input type="submit" class="btn btn-success"
+                value="Guardar"
+                  />
+             <a class="btn btn-danger" href="/persona/listar/">
+        Regresar</a>
+        </div>
+    </form>
+</div>
+   {% include 'scripts.html' %}
+
+</body>
+</html>

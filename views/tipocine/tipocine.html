@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <style>
+        .dataframe th{
+          text-align:left
+        }
+    </style>
+    {% include 'estilos.html' %}
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div class="container mt-3">
+
+ <form method="POST" class="input-group mb-3"
+       action="/tipocine/buscartipocine/" >
+{% csrf_token %}
+        <input type="text" class="form-control"
+               placeholder="Ingrese tipo cine"
+               name="nombre" value="{{nombre}}"
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                type="submit" id="button-addon2">Buscar
+        </button>
+    </form>
+
+<div class="container">
+{{lista | safe}}
+</div>
+
+</div>
+
+
+    {% include 'scripts.html' %}
+
+<script>
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        {% include 'estilos.html' %}
+
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div class="mb-3 container mt-3">
+    <a class="btn btn-secondary" href="/persona/agregarpersona/">
+        Nuevo</a>
+</div>
+<div  class="input-group mb-3 container mt-3"
+        >
+
+        <input type="text" class="form-control"
+               placeholder="Ingrese nombre completo persona"
+                id="txtnombrecompleto"
+               aria-label="Recipient's username"
+               onkeyup="buscarPersona()"
+               aria-describedby="button-addon2">
+
+    </div>
+
+<div id="divTabla" class="container mt-3">
+
+</div>
+
+   {% include 'scripts.html' %}
+    <script type="text/javascript"
+    src="{% static 'js/persona.js' %}"
+    ></script>
+</body>
+</html>

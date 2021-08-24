@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include 'estilos.html' %}
+</head>
+<body>
+
+{% include 'menu.html' %}
+
+<!-- 
+ <h1>{{saludo}}</h1>
+
+
+{% for dia in dias %}
+    <h3>-{{dia}}</h3>
+{% endfor %}
+
+{% for curso in cursos %}
+    {% if curso.envivo %}
+    <p>{{curso.curso}}</p>
+    <p>Profesor: {{curso.profesor}}</p>
+    {% endif %}
+{% endfor %}
+ 
+ !-->
+<div class="container mt-3">
+    <button class="btn btn-secondary" onclick="NuevoPais()">
+        Nuevo</button>
+    <fieldset>
+        <legend>Datos Pais</legend>
+    <form class="mb-3" method="POST" action="/pais/agregarpais/" >
+                {% csrf_token %}
+        <div class="mb-3">
+            <label
+                   class="form-label">Id Pais</label>
+            <input type="text" class="form-control"
+                   readonly
+                   name="idpais"
+
+                   value="{{idpais}}"
+                   id="txtidpais"
+                   placeholder="Id Pais">
+        </div>
+            <div class="mb-3">
+            <label
+                   class="form-label">Nombre Pais</label>
+            <input type="text" class="form-control"
+                    name="nombre"
+                   id="txtnombre"
+                   maxlength="20"
+                   minlength="3"
+                   required
+                   value="{{nombre}}"
+                   placeholder="Nombre Pais" />
+        </div>
+
+        <div class="mb-3">
+
+            <input type="submit" class="btn btn-success"
+                value="Guardar"
+                  />
+        </div>
+    </form>
+        </fieldset>
+</div>
+
+<div class="container mt-3">
+
+    <form method="POST" class="input-group mb-3" action="/pais/buscarpais/" >
+{% csrf_token %}
+        <input type="text" class="form-control"
+               placeholder="Ingrese nombre pais"
+               name="nombre" value="{{nombre}}"
+               aria-label="Recipient's username"
+               aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary"
+                type="submit" id="button-addon2">Buscar
+        </button>
+    </form>
+
+<table id="table" class="table">
+    <thead>
+      <tr>
+          <th>Id pais</th>
+          <th>Nombre</th>
+          <th>Operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for pais in listapais %}
+            <tr>
+                <td>{{pais.idpais}}</td>
+
+                <td>{{pais.nombre}}</td>
+
+                <td class="d-flex">
+                    <form method="GET" class="mr-2" action="/pais/recuperarpais/" >
+
+                        <input type="hidden"
+                        value="{{pais.idpais}}" name="idpais"
+                        />
+
+                        <input type="submit"
+                        value="Editar" class="btn btn-primary"
+                        />
+
+                    </form>
+                      <form method="GET" action="/pais/eliminarpais/" >
+
+                        <input type="hidden"
+                        value="{{pais.idpais}}" name="idpais"
+                        />
+
+                        <input type="submit"
+                        value="Eliminar" class="btn btn-danger"
+                        />
+
+                    </form>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    </div>
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/index.js' %}"
+></script>
+</body>
+</html>

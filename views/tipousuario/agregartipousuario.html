@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        {% include 'estilos.html' %}
+</head>
+<body>
+{% include 'menu.html' %}
+<div class="container">
+
+ <div class="container formtipousuario">
+         {% csrf_token %}
+
+<div class="mb-3 mt-3">
+            <label
+                   class="form-label">Id Tipo Usuario</label>
+            <input type="text" class="form-control"
+                   readonly
+
+                   id="txtidtipousuario"
+                   placeholder="Id Usuario">
+        </div>
+
+    <div class="mb-3 mt-3">
+            <label
+                   class="form-label">Nombre Tipo Usuario</label>
+            <input type="text" class="form-control"
+
+                    data-campo="nombre tipo usuario"
+                   id="txtnombretipousuario"
+                   placeholder="Nombre Tipo Usuario">
+        <div id="divtxtnombretipousuario"></div>
+        </div>
+     <div class="mb-3 mt-3">
+            <label
+                   class="form-label">Descripcion</label>
+            <input type="text" class="form-control"
+
+                     data-campo="descripcion"
+                   id="txtdescripcion"
+                   placeholder="Descripcion tipo Usuario">
+           <div id="divtxtdescripcion"></div>
+        </div>
+
+        <div id="divTabla">
+
+      </div>
+
+      <div class="mb-3 mt-3">
+
+            <input type="button" class="btn btn-success"
+                value="Guardar"
+                   onclick="GuardarDatos()"
+                  />
+           <input type="button" class="btn btn-success"
+                value="CheckBox"
+                   onclick=" obtenerCheckSeleccionados()"
+                  />
+             <a class="btn btn-danger" href="/tipousuario/listar/">
+        Regresar</a>
+        </div>
+
+
+</div>
+
+
+
+</div>
+
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/agregartipousuario.js' %}"
+></script>
+
+</body>
+</html>

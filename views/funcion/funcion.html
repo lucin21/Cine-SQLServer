@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     {% include 'estilos.html' %}
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div class="container mt-3">
+
+     <button class="btn btn-secondary mb-2"
+            onclick="Editar(0)"
+            data-toggle="modal" data-target="#exampleModal">
+        Nuevo</button>
+
+      <div  class="input-group mb-3"
+           >
+          <label>Pelicula</label>
+       <select id="cboPeliculaBuscar"
+               onchange="filtrarFuncionPorPelicula()"
+               class="form-control">
+
+       </select>
+
+      </div>
+<div id="divTabla">
+
+</div>
+</div>
+<div class="modal fade formfuncion" id="exampleModal"
+     tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="lblTitulo">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            {% csrf_token %}
+          <div class="mb-3">
+            <label
+                   class="form-label">Id Funcion</label>
+            <input type="text" class="form-control"
+                   readonly
+                   id="txtidfuncion"
+                   placeholder="Id Funcion">
+           </div>
+           <div class="mb-3">
+            <label
+                   class="form-label">Fecha Funciòn</label>
+             <input type="datetime-local" class="form-control"
+
+                   id="txtfechafuncion"
+                   placeholder="Fecha Funcion">
+        </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Pelicula</label>
+            <select id="cboIdPeliculaPopup" class="form-control">
+
+            </select>
+           </div>
+            <div class="mb-3" id="divCinePopup" >
+            <label
+                   class="form-label">Cine</label>
+            <select id="cboIdCinePopup" class="form-control"
+            onchange="obtenerSala()"
+            >
+
+            </select>
+           </div>
+           <div class="mb-3" id="divSalaPopup">
+            <label
+                   class="form-label">Sala</label>
+            <select id="cboIdSalaPopup" class="form-control">
+
+            </select>
+           </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                id="btnCerrarPopup"
+                data-dismiss="modal">Cancelar</button>
+        <button
+                onclick="GuardarDatos()"
+                type="button" class="btn btn-primary">
+            Guardar</button>
+      </div>
+        <div id="divErrores">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/funcion.js' %}"></script>
+</body>
+</html>

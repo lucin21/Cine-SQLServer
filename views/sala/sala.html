@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     {% include 'estilos.html' %}
+</head>
+<body>
+{% include 'menu.html' %}
+
+<div class="container mt-3">
+
+    <button class="btn btn-secondary mb-2"
+            onclick="Editar(0)"
+            data-toggle="modal" data-target="#exampleModal">
+        Nuevo</button>
+
+     <div  class="input-group mb-3"
+           >
+
+       <select id="cboCineBuscar" class="form-control">
+
+       </select>
+        <button class="btn btn-outline-primary"
+                onclick="Buscar()"
+                type="button" id="button-addon2">Buscar
+        </button>
+    </div>
+
+    <div id="divTabla">
+
+    </div>
+
+</div>
+
+<div class="modal fade formsala" id="exampleModal"
+     tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="lblTitulo">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            {% csrf_token %}
+          <div class="mb-3">
+            <label
+                   class="form-label">Id Sala</label>
+            <input type="text" class="form-control"
+                   readonly
+                   id="txtidsala"
+                   placeholder="Id Sala">
+           </div>
+           <div class="mb-3">
+            <label
+                   class="form-label">Cine</label>
+            <select id="cboCinePopup"
+
+                    class="form-control">
+
+            </select>
+        </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Nombre Sala</label>
+            <input type="text" class="form-control"
+
+                   id="txtnombresala"
+                   placeholder="Nombre Sala">
+           </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Numero Columnas</label>
+            <input type="number" min="0" class="form-control"
+
+                   id="txtcolumnas"
+                   placeholder="Ingrese numero columnas">
+           </div>
+         <div class="mb-3">
+            <label
+                   class="form-label">Numero Filas</label>
+            <input type="number" min="0" class="form-control"
+
+                   id="txtfila"
+                   placeholder="Ingrese numero fila">
+           </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                id="btnCerrarPopup"
+                data-dismiss="modal">Cancelar</button>
+        <button
+                onclick="GuardarDatos()"
+                type="button" class="btn btn-primary">
+            Guardar</button>
+      </div>
+        <div id="divErrores">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+{% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/sala.js' %}"></script>
+</body>
+</html>

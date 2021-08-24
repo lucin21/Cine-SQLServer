@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include 'estilos.html' %}
+
+</head>
+<body>
+{% include 'menu.html' %}
+<div class="mb-3 container mt-3">
+    <button class="btn btn-secondary"
+            onclick="Editar(0)"
+            data-toggle="modal" data-target="#exampleModal">
+        Nuevo</button>
+</div>
+<div class="container mt-3">
+<div id="divTabla">
+
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade formpelicula" id="exampleModal"
+     tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"  id="lblTitulo">
+
+        </h5>
+        <button type="button" class="close" data-dismiss="modal"
+                aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            {% csrf_token %}
+          <div class="mb-3">
+            <label
+                   class="form-label">Id Pelicula</label>
+            <input type="text" class="form-control"
+                   readonly
+                   id="txtidpelicula"
+                   placeholder="Id Pelicula">
+           </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Titulo</label>
+            <input type="text" class="form-control"
+
+                   id="txttitulo"
+                   placeholder="Titulo Pelicula">
+           </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Duracion</label>
+            <input type="number" min="0" class="form-control"
+
+                   id="txtduracion"
+                   placeholder="Duracion Pelicula">
+           </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Genero</label>
+            <select id="cboGenero"
+
+                    class="form-control">
+
+            </select>
+        </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Pais</label>
+            <select id="cboPais"
+
+                    class="form-control">
+
+            </select>
+        </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Tipo censura</label>
+            <select id="cboTipocensura"
+
+                    class="form-control">
+
+            </select>
+        </div>
+           <div class="mb-3">
+            <label
+                   class="form-label">Sinopsis</label>
+            <input type="text" class="form-control"
+
+                   id="txtsinopsis"
+                   placeholder="Sinopsis Pelicula">
+           </div>
+           <div class="mb-3">
+            <label
+                   class="form-label">Fecha Estreno</label>
+            <input
+                    placeholder="Fecha estreno"
+            type="text" id="txtfechaestreno" class="form-control"
+            />
+           </div>
+          <div class="mb-3">
+            <label
+                   class="form-label">Foto</label>
+              <img src=""
+                   class="form-control"
+                   id="imgFoto" width="100" height="100">
+            <input
+                   type="file"
+                   id="fupFoto"
+                   onchange="previewFoto()"
+            />
+           </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+                id="btnCerrarPopup"
+                data-dismiss="modal">Cancelar</button>
+        <button
+                onclick="GuardarDatos()"
+                type="button" class="btn btn-primary">
+            Guardar</button>
+      </div>
+        <div id="divErrores">
+
+        </div>
+    </div>
+  </div>
+</div>
+
+    {% include 'scripts.html' %}
+<script type="text/javascript"
+ src="{% static 'js/pelicula.js' %}"
+></script>
+
+</body>
+</html>
